@@ -1,0 +1,80 @@
+=========================================
+
+TVExample - Overview
+
+=========================================
+
+First it uses JiBX [1] to generate Java classes and an XML databinding from
+an XML Schema that describes XML documents containing TV programme metadata.
+Then it uses Restlet [2] and the Restlet JiBX extension [3] to create a server 
+with a REST interface to these documents. It unit tests the server uses JUnit 
+and Mockito [4]. It performs integration tests using the Maven Jetty plugin 
+[5] and the Restlet ServerServlet extention [6].
+
+Unfortunately, during development problems were encountered using the Restlet
+ClientResource class to post JiBX data to the server. The problems were
+identified using TcpMon [7] and a description of the problem and a
+temporary solution are in ClientProgrammeProxy.java
+
+[1] JiBX
+http://jibx.sourceforge.net/
+
+[2] Restlet
+http://www.restlet.org/
+
+[3] Restlet JiBX extension
+http://wiki.restlet.org/docs_2.1/13-restlet/28-restlet/68-restlet.html
+
+[4] Mockito
+http://code.google.com/p/mockito/
+
+[5] Maven Jetty Plugin
+http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin
+
+[6] Restlet ServerServlet extension
+http://wiki.restlet.org/docs_2.1/13-restlet/28-restlet/81-restlet.html
+
+[7] TCPMON
+http://code.google.com/p/tcpmon/
+
+=========================================
+
+REST INTERFACE EXAMPLES
+
+=========================================
+
+Start the server - either use the all dependency JAR created by Maven
+
+java -jar TVProgrammeExample/TVProgrammeREST/target/TVProgrammeREST-1.0.jar
+
+or use the Maven jetty:plugin
+
+cd TVProgrammeREST
+mvn jetty:run
+
+Post some TV programme data:
+
+curl -XPOST -H "Content-Type: text/xml" http://localhost:8182/tv/programmes/1 -d'
+<programme>
+	<id>1</id>
+	<title>KnightRider</title>
+	<description>Michael Knight and his car Kitt</description>
+</programme>'
+
+Retrieve some TV programme data:
+
+curl -XGET http://localhost:8182/tv/programmes/1
+
+Update some data:
+
+curl -XPUT -H "Content-Type: text/xml" http://localhost:8182/tv/programmes/1 -d'
+<programme>
+	<id>1</id>
+	<title>KnightRider</title>
+	<description>Michael Knight and his car Kitt</description>
+	<same_as>http://www.imdb.com/title/tt0083437/</same_as>
+</programme>'
+
+Delete some data:
+
+curl -XDELETE http://localhost:8182/tv/programmes/1

@@ -1,0 +1,5 @@
+<schema-set prefer-inline="false" generate-all="false" package="com.tvexample.programme.xml">
+  <!--  <class-decorator class="org.jibx.schema.codegen.extend.SerializableDecorator"/> -->
+  <schema name="TVProgramme.xsd" includes="programme">
+  </schema>
+</schema-set>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="programme">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Unique ID for the programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="title" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The title of the TV programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="description" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The description of the TV programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="same_as" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Indicates this resource is the same as another resource.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="media_type" type="media_type_value" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The media type associated with the programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="aliases" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Any aliases associated with this programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="uri" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>A URI associated with the TV programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="curie" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Content provider unique identifier.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="publisher" type="publisherType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>A publisher associated with the programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="image" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>An image associated with this programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="thumbnail" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A thumbnail image associated with this programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="genres" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>An genre tag associated with this programme.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="publisherType">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A key associated with the publisher.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The name of the publisher.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="country" type="countryType">
+				<xs:annotation>
+					<xs:documentation>The country of the publisher.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="countryType">
+		<xs:annotation>
+			<xs:documentation>Country type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GB" />
+			<xs:enumeration value="FR" />
+			<xs:enumeration value="ES" />
+			<xs:enumeration value="DE" />
+			<xs:enumeration value="US" />
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="media_type_value">
+		<xs:annotation>
+			<xs:documentation>Programme media type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="video" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
